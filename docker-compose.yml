@@ -17,7 +17,7 @@ services:
       - openvpn
 
   nginx:
-    image: nginx
+    image: nginx:1.19.2
 
   openvpn:
-    image: openvpn
+    image: openvpn/openvpn-as:latest
