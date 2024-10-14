@@ -7,7 +7,8 @@ services:
   #     - "80:80"
 
   test-sshd:
-    image: ghcr.io/yrutschle/sslh:latest
+    # image: ghcr.io/yrutschle/sslh:latest
+    image: pety3bi/sslh
     hostname: sslh
     ports:
       - 443:443
