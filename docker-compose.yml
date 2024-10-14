@@ -1,8 +1,23 @@
 services:
 
-  test-nginx:
-    container_name: test-nginx
-    image: nginx:1.19.2
-    ports:
-      - "80:80"
+  # test-nginx:
+  #   container_name: test-nginx
+  #   image: nginx:1.19.2
+  #   ports:
+  #     - "80:80"
 
+  test-sshd:
+    image: ghcr.io/yrutschle/sslh:latest
+    hostname: sslh
+    ports:
+      - 443:443
+    command: --foreground --listen=0.0.0.0:443 --tls=nginx:443 --openvpn=openvpn:1194
+    depends_on:
+      - nginx
+      - openvpn
+
+  nginx:
+    image: nginx
+
+  openvpn:
+    image: openvpn
