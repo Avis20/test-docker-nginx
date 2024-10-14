@@ -6,19 +6,23 @@ services:
   #   ports:
   #     - "80:80"
 
-  test-sshd:
-    # image: ghcr.io/yrutschle/sslh:latest
-    image: pety3bi/sslh
-    hostname: sslh
-    ports:
-      - 443:443
-    command: --foreground --listen=0.0.0.0:443 --tls=nginx:443 --openvpn=openvpn:1194
-    depends_on:
-      - nginx
-      - openvpn
+  # test-sshd:
+  #   # image: ghcr.io/yrutschle/sslh:latest
+  #   image: pety3bi/sslh
+  #   hostname: sslh
+  #   ports:
+  #     - 443:443
+  #   command: --foreground --listen=0.0.0.0:443 --tls=nginx:443 --openvpn=openvpn:1194
+  #   depends_on:
+  #     - nginx
+  #     - openvpn
 
-  nginx:
-    image: nginx:1.19.2
+  # nginx:
+  #   image: nginx:1.19.2
+  #   ports:
+  #     - 8443:8443 # bind to docker host on port 8443
 
   openvpn:
     image: openvpn/openvpn-as:latest
+    ports:
+      - 1194:1194 # bind to docker host on port 1194
